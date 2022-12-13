@@ -287,7 +287,8 @@ doc["threejsblock"].bind("click", threejsblock.do)
 <p><!-- Brython 程式執行的結果, 都以 brython_div1 作為切入位置 --></p>
 <div id="brython_div2"></div>
 <!-- editor2 結束 --><hr/>
-<script src="https://unpkg.com/three@0.144.0/build/three.js" type="text/javascript"></script><h1>Brython</h1>
+<script src="https://unpkg.com/three@0.144.0/build/three.js" type="text/javascript"></script>
+<h1>Brython</h1>
 <p><a href="https://en.wikipedia.org/wiki/Python_(programming_language)">https://en.wikipedia.org/wiki/Python_(programming_language)</a></p>
 <h4>Examples:</h4>
 <p style="padding-left: 30px;"><a href="https://gist.github.com/mdecycu/d9082d678096bd58378d6afe2c7fa05d">https://gist.github.com/mdecycu/d9082d678096bd58378d6afe2c7fa05d</a></p>
@@ -596,9 +597,53 @@ doc["aitetris"].bind("click", aitetris.do)
 <p>更新完網站後按下下方的save後按下generate_pages轉成靜態，在倉儲根目錄中執行 acp "提交說明字串" 後, 即可憑藉 SSH 的設定, 將改版內容提交推送到 Github 個人倉儲區。</p>
 <p>使用<a href="https://mdecp2022.github.io/site-40823116/content/Brython.html">靜態網頁中<strong></strong>Brython所在的位置連結</a>加上?src=再加上<a href="https://gist.githubusercontent.com/40823116/c4327cdf5fdcb08ecab94486b00b5f4c/raw/684a836cb1c2ebe0c9f5e6e6d5148f6484fd96e0/site-40823116-1">GITs編寫的程式產生的連結</a>，就會的在靜態網頁的位置上<a href="https://mdecp2022.github.io/site-40823116/content/Brython.html?src=https://gist.githubusercontent.com/40823116/c4327cdf5fdcb08ecab94486b00b5f4c/raw/684a836cb1c2ebe0c9f5e6e6d5148f6484fd96e0/site-40823116-1">顯示出所編輯得程式</a></p>
 <p><img alt="" height="317" src="/images/chrome_dMtVuUZL8w.png" width="418"/></p>
-<p></p><h1>W6</h1>
+<p></p>
+<h1>W6</h1>
 <h2>作業</h2>
-<p><a href="https://mdecp2022.github.io/site-40823116/content/cp2022.html?src2=https://gist.githubusercontent.com/40823116/1da9b78a892032dd797138831c43600f/raw/1dbb9bb0fb2ef95c2875d6053505f92f4e884ff6/w6_homework.py">隨機抽點程式</a></p>
+<p><a href="https://mdecp2022.github.io/site-40823116/content/cp2022.html?src2=https://gist.githubusercontent.com/40823116/1da9b78a892032dd797138831c43600f/raw/f0e44c7bc444a4e590ed7b83c3552df6df288e71/w6_homework.py">隨機抽點程式</a></p>
+<pre class="brush:html;auto-links:false;toolbar:false" contenteditable="false">from browser import document, html
+# 使用 import 導入 random 模組, 隨後就可以直接引用 random 模組的方法
+import random
+brython_div1 = document["brython_div1"]
+# Python 的註解分為單行註解與多行, 單行註解可在字串前方放入 #
+"""
+brython_div1 &lt;= html.BUTTON("hello")
+brython_div1 &lt;= html.BR()
+brython_div1 &lt;= html.A("google", href="https://google.com")
+"""
+
+# 宣告 url 變數值為字串, 此字串為取得 cp2022 1a 選課成員名單
+url = "https://mde.tw/studlist/2022fall/1a.txt"
+# 利用上述已經宣告的 url 變數字串值, 作為 open() 函式的輸入變數, 可以連結至該網站
+# 連接 url 所代表字串的網站後, 再利用 read() 函式讀取該網站的內容, 即可取得 cp2022 1a 的選課成員學號
+# 由於所取回的學號以跳行符號隔開, 因此取回的學號資料行, 再利用 split() 函式, 以 \n 跳行符號分割後
+# 所對應到 data 的資料型別將會是數列
+data = open(url).read().split("\n")
+# 宣告 mdecp2022 變數值為字串, 此字串為方便之後撰寫
+mdecp2022 = "https://mdecp2022.github.io/site-"
+# 宣告 data 為 data 的第二項到倒數第二項
+data = data[1:-1]
+
+# 使用 random 模組裡的 shuffle 將data裡的元素打亂
+random.shuffle(data)
+# 使用重複迴圈在 data 裡取前五個(0,1,2,3,4)
+for i in data[:5]:
+    # 宣告 stud 變數為切割掉空格的i
+    stud = i.split("\t")
+    # 宣告 stud_num 為 stud 的第一項
+    stud_num = stud[0]
+    # 宣告 github_acc 為 stud 的第二項
+    github_acc = stud[1]
+    #print(stud_num, github_acc)
+    # 如果 github_acc 沒有取到
+    if github_acc == "":
+        # github_acc 就會是 stud_num
+        github_acc = stud_num
+    # site (網站)= mdecp2022 變數 + github_acc 變數
+    site = mdecp2022 + github_acc
+    link = html.A(stud_num, href=site)
+    brython_div1 &lt;= link
+    brython_div1 &lt;= html.BR()</pre>
 <p></p><h1>W13</h1>
 <p>攝氏溫度 <span>c = (f-32)*5/9</span></p>
 <p>華氏溫度 <span>f =c*9/5+32</span></p>
