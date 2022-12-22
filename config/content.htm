@@ -692,15 +692,24 @@ print(init_val)</pre>
 <h1>HW</h1>
 <p></p>
 <h2>w10</h2>
-<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">a = ""
-for i in range(1, 10, 1):
-    a + str(i) + ","
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">#將a設定為一個空字串
+a = ""
+#重複迴圈範圍在1到10之間每次增量2
+for i in range(1, 10, 2):
+   #重新定義a=空字串a+i(可能是浮點數)+一個,隔開+一個空格
+   a = a + str(i) + "," +" "
+   '''
+   #在裡面打印會多印4次
+   print(a)
+   '''
+#foe迴圈跑完之後在印出a
 print(a)
 
  
 
 # 1, 3, 5, 7, 9</pre>
-<h2>w15</h2>
+<p></p>
+<p><a href="https://mdecp2022.github.io/site-40823116/content/cp2022.html?src=https://gist.githubusercontent.com/40823116/906343c09cbd390be575886bdfa7ff85/raw/6bba32bd172ed0227439034bfe8ac9bd9ef85173/w10_HW2">w10HW2</a></p><h2>w15</h2>
 <p></p>
 <p>1 為何學習計算機程式需要建立個人倉儲?</p>
 <p>A 可以看每次改版更新的進度</p>
