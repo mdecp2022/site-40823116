@@ -684,7 +684,39 @@ for i in range(11):
     init_val += i
 print(init_val)</pre>
 <p></p>
-<h2>W13</h2>
+<h2>W11</h2>
+<!-- 
+在動態網站頁面中啟用 Brython 執行環境的用法, 請注意動態網站執行所在路徑
+-->
+<script src="/static/brython.js"></script>
+<script src="/static/brython_stdlib.js"></script>
+<!-- 啟動 Brython -->
+<p>
+<script>
+window.onload=function(){
+brython({debug:1, pythonpath:['/static/','/downloads/py/']});
+}
+</script>
+<!-- 以下事先在頁面中加入 id="brython_div" 的 div 標註
+之後可利用 Brython 的 document 模組與此 html 標註對應
+--></p>
+<div id="brython_div"></div>
+<p>
+<script type="text/python">
+from browser import html, document
+# Brython 的 input() 可以接受輸入提示字串, 跳出瀏覽器輸入表單後, 將輸入內容以字串取回
+user_input_temp = input("請輸入攝氏溫度值:")
+# 接著列出 user_input_temp 變數的資料型別
+# 但是在頁面中 Brython 的 print() 將會顯示在 log 而非頁面
+print(type(user_input_temp))
+# 這裡定義一個 brython_div 變數, 透過 document[] 與頁面中 id="brython_div" 的位置對應
+brython_div = document["brython_div"]
+# 看能不能直接將變數值字串列在標註 id 為 "brython_div" 的頁面位置
+brython_div <= user_input_temp
+# 之後若要列出 html, 則需要透過 Brython 的 html 模組
+</script>
+</p>
+<p></p><h2>W13</h2>
 <p>攝氏溫度 <span>c = (f-32)*5/9</span></p>
 <p>華氏溫度 <span>f =c*9/5+32</span></p>
 <p><a href="https://mdecp2022.github.io/site-40823116/content/Brython.html?src=https://gist.githubusercontent.com/40823116/0e6ba3b660ec4b0ca38eb668ba44bc40/raw/e728845abfa7f2dd31d87917c03654a1610efa93/w13_temp_ex2.py">w13_temp_ex2</a></p>
@@ -693,6 +725,7 @@ print(init_val)</pre>
 <p></p>
 <h2>w10</h2>
 <h3>HW1</h3>
+<p>ast模組裡的literal_eval可以幫助我們將雜亂的json檔案轉換為有條理乾淨的資料型別，接著用<span>dict</span>開始建立字典，以學號當成索引，分數當成答案的方式，將資料放入這個字典，最後用迴圈的方式在cp_stud裡面依序尋找stud，如果找的到學號就印出學號及成績，如果找不到學號就印出學號及缺考，使用<span>literal_</span>append也可以整理出缺考的資料。</p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false"># 導入 ast 模組是希望利用其 literal_eval() 將 dict 格式的字串轉為 dict 資料型別
 # 以利隨後的取值運算
 import ast
@@ -775,7 +808,8 @@ print(a)
 
 # 1, 3, 5, 7, 9</pre>
 <p></p>
-<p><a href="https://mdecp2022.github.io/site-40823116/content/cp2022.html?src=https://gist.githubusercontent.com/40823116/906343c09cbd390be575886bdfa7ff85/raw/6bba32bd172ed0227439034bfe8ac9bd9ef85173/w10_HW2">w10HW2</a></p><h2>w15</h2>
+<p><a href="https://mdecp2022.github.io/site-40823116/content/cp2022.html?src=https://gist.githubusercontent.com/40823116/906343c09cbd390be575886bdfa7ff85/raw/6bba32bd172ed0227439034bfe8ac9bd9ef85173/w10_HW2">w10HW2</a></p>
+<h2>w15</h2>
 <p></p>
 <p>1 為何學習計算機程式需要建立個人倉儲?</p>
 <p>A 可以看每次改版更新的進度</p>
